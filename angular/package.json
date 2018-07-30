@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "build-prod": "ng build --prod --aot --build-optimizer --base-href=\".\"",
+    "docker-build": "docker build -t mycr.azurecr.io/myimg:latest .",
+    "predocker-push": "npm run docker-build",
+    "docker-push": "docker push mycr.azurecr.io/myimg",
+    }
+}

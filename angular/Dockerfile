@@ -1,0 +1,23 @@
+# Build Env
+FROM node:9.1-alpine AS build-env
+WORKDIR /app
+
+COPY package.json ./
+COPY package-lock.json ./
+
+RUN npm i
+
+COPY src ./src
+COPY config ./config
+COPY angular.json ./
+COPY tsconfig.json ./
+COPY tslint.json ./
+
+RUN npm run build-prod
+
+# Prod Env
+FROM nginx:alpine
+WORKDIR /app
+
+COPY --from=build-env /app/dist/myapp /usr/share/nginx/html
+COPY --from=build-env /app/config/nginx.conf /etc/nginx/conf.d/default.conf

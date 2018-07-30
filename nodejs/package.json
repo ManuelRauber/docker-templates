@@ -1,0 +1,11 @@
+{
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon --exec ts-node src/index.ts | bunyan",
+    "build-prod": "tsc",
+    "server": "node index.js | bunyan",
+    "docker-build": "docker build -t mycr.azurecr.io/myimage:latest .",
+    "predocker-push": "npm run docker-build",
+    "docker-push": "docker push mycr.azurecr.io/myimg"
+  },
+}
