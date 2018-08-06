@@ -1,5 +1,5 @@
 # Build Env
-FROM node:9.1-alpine AS build-env
+FROM node:alpine AS build-env
 WORKDIR /app
 
 COPY package.json ./
